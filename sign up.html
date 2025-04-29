@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="sign up.css">
+    
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup">
+        <h2>Sign Up</h2>
+        <form  action="signup.php" method="POST" onsubmit="return validateForm()"> 
+            <form>
+            <div class="input-group">
+                <label for="name"> Full Name</label>
+                <input type="text" id="name" name="fullname" placeholder="Name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="password" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <h5>By signing up,you have to <a href="term">terms of use <h5>& <a href="agree">privacy policy.</a></h5></a></h5>
+        <h5>Already registered? <a href="login.html">Login here</a></h5>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            let email = document.getElementById("Email").value;
+            let password = document.getElementById("password").value;
+            let emailError = document.getElementById("emailError");
+            let passwordError = document.getElementById("passwordError");
+            
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            
+            let valid = true;
+    
+            if (!validateEmail(email)) {
+                emailError.textContent = "Please enter a valid email address.";
+                valid = false;
+            }
+    
+            if (password.length < 8) {
+                passwordError.textContent = "Password must be at least 8 characters.";
+                valid = false;
+            }
+            
+            return valid;
+        }
+    
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>

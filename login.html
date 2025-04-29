@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" -->
+     <!-- integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+</head>
+<body>
+    <header>
+        <h2 class="welcome">Welcome</h2>
+            <nav class="navigation">
+                <a href="index.html">Home</a>
+                <a href="about">about</a>
+                <a href="contact">contact</a>
+            </nav>
+    </header>
+    <div class="login-container">
+        <div class="login">
+         <h2>Login</h2>
+            <form id="Loginform"action="login.php" method="POST" onsubmit="return validateForm()">       
+            <div class="input-group">
+                <label for="Email">Email</label>
+                <!-- <i class="fa-solid fa-user"></i> -->
+                <input type="text"  id="Email" name="email" required placeholder="Email">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="password">
+            </div>
+            <div class="create account">
+                <h5>Don't have an account ?</h5>
+                <a href="sign up.html">Create account</a> 
+            </div><br/><br/>
+            <button type="submit" id="loginBtn">Login</button>
+        </form>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            let email = document.getElementById("Email").value;
+            let password = document.getElementById("password").value;
+            let emailError = document.getElementById("emailError");
+            let passwordError = document.getElementById("passwordError");
+            
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            
+            let valid = true;
+    
+            if (!validateEmail(email)) {
+                emailError.textContent = "Please enter a valid email address.";
+                valid = false;
+            }
+    
+            if (password.length < 8) {
+                passwordError.textContent = "Password must be at least 8 characters.";
+                valid = false;
+            }
+            
+            return valid;
+        }
+    
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>
